@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Candy';
+  src: url('@/fonts/candy-inc.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('@/fonts/Outfit-Medium.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-candy {
+  font-family: 'Candy', sans-serif;
+}
