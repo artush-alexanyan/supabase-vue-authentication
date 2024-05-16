@@ -9,17 +9,14 @@
       >
         <div class="w-80 md:mt-0 mt-52">
           <h1 class="text-7xl text-center mb-10 font-candy text-[#FF735C]">Login</h1>
-          <form @submit.prevent="handleLogin" class="space-y-2.5">
+          <form @submit.prevent="userLogin" class="space-y-2.5">
             <BaseInput :label="'Email'" v-model="email" :loading="loading" :type="'Email'">
               <template #icon>
                 <IconEmail :fill="'#1A2E35'" />
               </template>
             </BaseInput>
-            <BaseInput :label="'Password'" v-model="password" :loading="loading" :type="'Password'">
-              <template #icon>
-                <IconPassword :fill="'#1A2E35'" />
-              </template>
-            </BaseInput>
+            <BasePasswordInput :label="'Password'" v-model="password" :loading="loading">
+            </BasePasswordInput>
             <RouterLink class="mt-1.5 text-xs text-blue-600" to="/forgot-password"
               >Forgot password?</RouterLink
             >
@@ -39,11 +36,11 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/supabase/supabase'
 import BaseInput from '@/base/BaseInput.vue'
+import BasePasswordInput from '@/base/BasePasswordInput.vue'
 import BaseSubmitBtn from '@/base/BaseSubmitBtn.vue'
 import AuthSocial from './AuthSocial.vue'
 import AuthRouter from './AuthRouter.vue'
 import IconEmail from '@/assets/icons/IconEmail.vue'
-import IconPassword from '@/assets/icons/IconPassword.vue'
 import BaseAlert from '@/base/BaseAlert.vue'
 
 const router = useRouter()
@@ -51,12 +48,13 @@ const loading = ref(false)
 const email = ref('')
 const password = ref('')
 const messages = ref([])
+
 const resetMessages = () => {
   setTimeout(() => {
     messages.value = []
   }, 3000)
 }
-const handleLogin = async () => {
+const userLogin = async () => {
   try {
     loading.value = true
     const { error } = await supabase.auth.signInWithPassword({
@@ -64,6 +62,7 @@ const handleLogin = async () => {
       password: password.value
     })
     if (error) {
+      loading.value = false
       messages.value.push({
         type: 'Error',
         message: error.message
@@ -71,9 +70,11 @@ const handleLogin = async () => {
       resetMessages()
       return
     }
+    loading.value = false
     router.push({ path: '/user' })
   } catch (error) {
     if (error) {
+      loading.value = false
       messages.value.push({
         type: 'Error',
         message: error.message

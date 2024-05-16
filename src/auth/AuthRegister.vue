@@ -30,23 +30,18 @@
                 <IconEmail :fill="fill" />
               </template>
             </BaseInput>
-            <BaseInput
+            <BasePasswordInput
               :label="'Create password'"
               v-model="password"
               :loading="registerLoading"
-              :type="'Password'"
             >
-              <template #icon>
-                <IconPassword :fill="fill" />
-              </template>
-            </BaseInput>
+            </BasePasswordInput>
             <BaseSubmitBtn :label="'Create account'" :loading="registerLoading" />
           </form>
           <AuthSocial />
           <AuthRouter :link="'/'" :label="`Already have an account? Login `" />
         </div>
       </div>
-      <!-- <BaseSuccessPopup /> -->
     </div>
     <BaseAlert :messages="registerMessages" />
   </div>
@@ -56,14 +51,13 @@
 import { computed, ref } from 'vue'
 import { useRegisterStore } from '@/stores/register'
 import BaseInput from '@/base/BaseInput.vue'
+import BasePasswordInput from '@/base/BasePasswordInput.vue'
 import BaseSubmitBtn from '@/base/BaseSubmitBtn.vue'
 import AuthSocial from './AuthSocial.vue'
 import AuthRouter from './AuthRouter.vue'
 import IconEmail from '@/assets/icons/IconEmail.vue'
-import IconPassword from '@/assets/icons/IconPassword.vue'
 import IconUser from '@/assets/icons/IconUser.vue'
-// import BaseSuccessPopup from '@/base/BaseSuccessPopup.vue'
-import BaseAlert from './verification/BaseAlert.vue'
+import BaseAlert from '@/base/BaseAlert.vue'
 
 const registerStore = useRegisterStore()
 const registerLoading = computed(() => registerStore.registerLoading)

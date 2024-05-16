@@ -74,7 +74,7 @@ const resetPassword = async () => {
     })
     if (error) throw error
     console.log('data', data)
-    message.value = 'Pussword updated successfully!'
+    message.value = 'Password updated successfully!'
     showSuccessPopup.value = true
   } catch (error) {
     if (error) {

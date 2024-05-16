@@ -1,8 +1,8 @@
 <template>
   <div>
     <img
-      v-if="user.user_metadata.avatar_url"
-      :src="user.user_metadata.avatar_url"
+      v-if="user.avatar_url"
+      :src="user.avatar_url"
       alt="avatar"
       class="mx-auto h-28 object-contain rounded-full mb-5"
     />

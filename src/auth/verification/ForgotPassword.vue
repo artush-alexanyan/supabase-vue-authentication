@@ -5,7 +5,7 @@
         class="md:block hidden bg-[url('@/assets/images/auth-6.jpg')] bg-contain bg-no-repeat bg-center"
       ></div>
       <div
-        class="flex items-center justify-center animate__animated animate__fadeInDown animate__fast md:bg-none bg-[url('@/assets/images/auth-5.jpg')] bg-contain bg-no-repeat bg-top"
+        class="flex items-center justify-center animate__animated animate__fadeInDown animate__fast md:bg-none bg-[url('@/assets/images/auth-6.jpg')] bg-contain bg-no-repeat bg-top"
       >
         <div class="w-80 md:mt-0 mt-52">
           <h1 class="text-7xl text-center mb-10 font-candy text-[#FF735C]">Send reset email</h1>
@@ -38,7 +38,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { supabase } from '@/supabase/supabase'
 import BaseInput from '@/base/BaseInput.vue'
 import BaseSubmitBtn from '@/base/BaseSubmitBtn.vue'
@@ -64,7 +63,7 @@ const sendPasswordReset = async () => {
     loading.value = true
 
     const { error } = await supabase.auth.resetPasswordForEmail(email.value, {
-      redirectTo: 'http://localhost:5173/reset-password'
+      redirectTo: `${import.meta.env.VITE_BASE_URL}/reset-password`
     })
     if (error) {
       messages.value.push({

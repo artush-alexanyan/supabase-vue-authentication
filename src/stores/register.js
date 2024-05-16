@@ -10,7 +10,7 @@ export const useRegisterStore = defineStore('RegisterStore', {
   actions: {
     async saveUserDataToDatabase(user) {
       try {
-        // Save user data to your database
+        // Save user data to database
         const { error } = await supabase.from('users').insert([user])
 
         if (error) {
