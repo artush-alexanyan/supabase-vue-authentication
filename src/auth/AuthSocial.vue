@@ -68,17 +68,7 @@ const signupWithFacebook = async () => {
   if (error) {
     console.error('error', error)
   }
-  console.log('data', data)
 }
 
-onMounted(() => {
-  supabase.auth.onAuthStateChange((_, _session) => {
-    if (_session) {
-      user.value = _session.user
-    } else {
-      console.log('No authenticated user found.')
-    }
-    console.log('User', user.value)
-  })
-})
+onMounted(() => {})
 </script>

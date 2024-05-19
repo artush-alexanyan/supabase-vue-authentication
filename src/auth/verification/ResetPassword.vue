@@ -69,11 +69,10 @@ const resetPassword = async () => {
   }
   try {
     loading.value = true
-    const { data, error } = await supabase.auth.updateUser({
+    const { error } = await supabase.auth.updateUser({
       password: new_password.value
     })
     if (error) throw error
-    console.log('data', data)
     message.value = 'Password updated successfully!'
     showSuccessPopup.value = true
   } catch (error) {
