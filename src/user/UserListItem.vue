@@ -2,7 +2,7 @@
   <div class="user-list-item">
     <div
       v-if="isEdit"
-      class="flex items-center justify-between py-3.5 px-2.5 cursor-pointer border-b border-b-gray-100"
+      class="flex items-center justify-between py-3.5 px-2.5 cursor-pointer border-b border-b-gray-100 animate__animated animate__faster animate__flipInX"
     >
       <input
         :disabled="editing"
